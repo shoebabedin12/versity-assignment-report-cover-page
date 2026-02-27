@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import logo from "@/app/assets/images/logo.jpeg";
 
@@ -19,19 +19,18 @@ const defaultData = {
     "Lecturer, Department of CSE, Central University of Science & Technology.",
   submissionDate: "",
 };
-interface FormInputProps {
-  label: string;
-  name: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-  textarea?: boolean;
-}
+
+// Lazy state initialization to read localStorage only on the client
 export default function Home() {
+  const previewRef = useRef<HTMLDivElement>(null);
+
   const [data, setData] = useState(() => {
-    const saved = localStorage.getItem("labReportData");
-    return saved ? JSON.parse(saved) : defaultData;
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("labReportData");
+      return saved ? JSON.parse(saved) : defaultData;
+    }
+    return defaultData; // fallback for SSR
   });
-   const previewRef = useRef<HTMLDivElement>(null);
 
   const handlePrint = () => {
     if (!previewRef.current) return;
@@ -49,10 +48,11 @@ export default function Home() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
-    });
+    const updated = { ...data, [e.target.name]: e.target.value };
+    setData(updated);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("labReportData", JSON.stringify(updated));
+    }
   };
 
   return (
@@ -124,15 +124,19 @@ export default function Home() {
   );
 }
 
-// 🔥 Reusable Form Component
-
 function FormInput({
   label,
   name,
   value,
   onChange,
   textarea = false,
-}: FormInputProps) {
+}: {
+  label: string;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  textarea?: boolean;
+}) {
   return (
     <div className="form-group">
       <label>{label}</label>
