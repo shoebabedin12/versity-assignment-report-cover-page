@@ -1,26 +1,207 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #dcdcdc;
+  font-family: "Times New Roman", serif;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0;
+}
+.builder-container {
+  display: flex;
+  /* min-height: 100vh; */
+}
+
+.report-container {
+  width: 800px;
+  background: white;
+  border: 2px solid black;
+  padding: 60px;
+}
+
+.university {
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.logo-box {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.lab-title {
+  text-align: center;
+  font-size: 28px;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #4a76a8;
+  margin: 20px 0;
+}
+
+.department {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.course-info {
+  margin-bottom: 40px;
+}
+
+.submission-table {
+  display: flex;
+  border: 1px solid black;
+}
+
+.submission-table > div {
+  flex: 1;
+  padding: 20px;
+}
+
+.submission-table .left {
+  border-right: 1px solid black;
+}
+
+.submission-table h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.date {
+  margin-top: 40px;
+}
+.logo-box img{
+  margin: 0 auto;
+  border-radius: 100%;
+  overflow: hidden;
+}
+/* LEFT FORM */
+.form-section {
+  width: 35%;
+  background: white;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+  overflow-y: auto;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  font-size: 12px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-top: 15px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+/* RIGHT PREVIEW */
+.preview-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+/* A4 */
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.a4-page {
+  width: 21cm;
+  min-height: 29.7cm;
+  background: white;
+  padding: 2.5cm;
+  box-sizing: border-box;
+  border: 1px solid black;
+  font-family: "Times New Roman", serif;
+}
+
+.university {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.logo-box {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.lab-title {
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #4a76a8;
+  margin: 20px 0;
+}
+
+.department {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.course-info {
+  margin-bottom: 40px;
+}
+
+.submission-table {
+  display: flex;
+  border: 1px solid black;
+}
+
+.submission-table > div {
+  flex: 1;
+  padding: 20px;
+}
+
+.left {
+  border-right: 1px solid black;
+}
+
+.submission-date {
+  margin-top: 50px;
+}
+
+/* PRINT */
+@media print {
+  body {
+    margin: 0;
+  }
+
+  .form-section {
+    display: none;
+  }
+
+  .preview-section {
+    padding: 0;
+  }
+
+  .a4-page {
+    border: none;
+  }
 }
