@@ -4,86 +4,14 @@
 body {
   background: #dcdcdc;
   font-family: "Times New Roman", serif;
+  margin: 0;
 }
 
-.page {
-  display: flex;
-  justify-content: center;
-  padding: 40px 0;
-}
 .builder-container {
   display: flex;
-  /* min-height: 100vh; */
+  min-height: 100vh;
 }
 
-.report-container {
-  width: 800px;
-  background: white;
-  border: 2px solid black;
-  padding: 60px;
-}
-
-.university {
-  text-align: center;
-  font-size: 26px;
-  font-weight: bold;
-}
-
-.logo-box {
-  text-align: center;
-  margin: 30px 0;
-}
-
-.lab-title {
-  text-align: center;
-  font-size: 28px;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
-}
-
-.divider {
-  border: none;
-  border-top: 1px solid #4a76a8;
-  margin: 20px 0;
-}
-
-.department {
-  text-align: center;
-  font-weight: bold;
-  margin-bottom: 40px;
-}
-
-.course-info {
-  margin-bottom: 40px;
-}
-
-.submission-table {
-  display: flex;
-  border: 1px solid black;
-}
-
-.submission-table > div {
-  flex: 1;
-  padding: 20px;
-}
-
-.submission-table .left {
-  border-right: 1px solid black;
-}
-
-.submission-table h3 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.date {
-  margin-top: 40px;
-}
-.logo-box img{
-  margin: 0 auto;
-  border-radius: 100%;
-  overflow: hidden;
-}
 /* LEFT FORM */
 .form-section {
   width: 35%;
@@ -91,6 +19,12 @@ body {
   padding: 20px;
   border-right: 1px solid #ccc;
   overflow-y: auto;
+}
+
+.form-title {
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .form-group {
@@ -107,24 +41,21 @@ body {
   width: 100%;
   padding: 6px;
   border: 1px solid #ccc;
+  font-size: 14px;
 }
 
-button {
+button.print-btn {
   margin-top: 15px;
   padding: 8px 12px;
   cursor: pointer;
 }
+
 /* RIGHT PREVIEW */
 .preview-section {
   flex: 1;
   display: flex;
   justify-content: center;
   padding: 40px;
-}
-/* A4 */
-.page-wrapper {
-  display: flex;
-  justify-content: center;
 }
 
 .a4-page {
@@ -151,6 +82,7 @@ button {
 .lab-title {
   text-align: center;
   letter-spacing: 3px;
+  margin-bottom: 20px;
 }
 
 .divider {
@@ -183,25 +115,34 @@ button {
   border-right: 1px solid black;
 }
 
+.submission-table h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .submission-date {
   margin-top: 50px;
 }
 
 /* PRINT */
 @media print {
-  body {
-    margin: 0;
+  body * {
+    visibility: hidden;
   }
 
-  .form-section {
-    display: none;
-  }
-
-  .preview-section {
-    padding: 0;
+  .a4-page, .a4-page * {
+    visibility: visible;
   }
 
   .a4-page {
-    border: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  .builder-container {
+    margin: 0;
+    padding: 0;
   }
 }

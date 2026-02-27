@@ -34,15 +34,7 @@ export default function Home() {
 
   const handlePrint = () => {
     if (!previewRef.current) return;
-
-    const printContents = previewRef.current.innerHTML;
-    const originalContents = document.body.innerHTML;
-
-    document.body.innerHTML = printContents;
-    window.print();
-    document.body.innerHTML = originalContents;
-
-    window.location.reload(); // UI restore
+    window.print(); // With the print CSS, it prints only the preview
   };
 
   const handleChange = (
